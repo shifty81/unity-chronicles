@@ -1,17 +1,29 @@
-# Chronicles of a Drifter
+# Chronicles of a Drifter - Unity Edition
 
-A 2D top-down action RPG built with a custom **C++/.NET 9/Lua voxel game engine**, inspired by The Legend of Zelda: A Link to the Past.
+A 2D top-down action RPG built with **Unity Engine**, inspired by The Legend of Zelda: A Link to the Past.
 
-## ⚠️ Platform Configuration
+> **⚠️ IMPORTANT: This project has been converted to Unity!**
+> 
+> The original C++/.NET custom engine version has been replaced with Unity for better cross-platform support and easier development.
+> 
+> **See [README_UNITY.md](README_UNITY.md) for Unity-specific setup instructions.**
 
-**This project is configured for Windows-only with DirectX 11 as the default renderer.**
+## 🎮 Platform Support
 
-- **Primary Platform:** Windows 10/11
-- **Default Renderer:** DirectX 11 (broad hardware compatibility)
-- **Build System:** Visual Studio 2022 / CMake on Windows
-- **Testing:** Windows-only environment
+**This Unity project supports multiple platforms:**
 
-The renderer can be changed in the game settings menu (game will restart with the new renderer).
+- **Windows** (Primary development platform)
+- **macOS** (Supported)
+- **Linux** (Supported)
+- **WebGL** (Planned)
+
+## 🛠️ Technology Stack
+
+### Unity 2022.3 LTS
+- **2D Rendering** with sprite-based graphics
+- **Unity Physics 2D** for collision detection
+- **Tilemap System** for terrain
+- **C# MonoBehaviours** for game logic
 
 ## 🎮 Game Concept
 
@@ -23,161 +35,43 @@ Chronicles of a Drifter features:
 - **Home base building** with modular construction
 - **Satisfying combat** with DoT effects and responsive feedback
 
-## 🛠️ Technology Stack
-
-### C++ Core Engine
-- Performance-critical systems (rendering, physics, audio)
-- **DirectX 11 renderer** (Windows, broad compatibility, **DEFAULT**) ✅ **IMPLEMENTED**
-- **DirectX 12 renderer** (Windows, high-performance) ✅ **IMPLEMENTED**
-- **SDL2 renderer** (cross-platform, optional) ✅ **IMPLEMENTED**
-- Abstracted rendering backend for flexibility
-- **Windows-focused development** with optional cross-platform support
-
-### .NET 9 (C#) Game Logic
-- Entity Component System (ECS) architecture
-- Scene management
-- Gameplay systems
-- UI framework
-
-### Lua Scripting
-- Enemy AI behaviors
-- Weapon effects
-- Quest logic
-- Runtime-editable content
-
-## 📁 Project Structure
-
-```
-ChroniclesOfADrifter/
-├── docs/              # Comprehensive documentation
-├── src/
-│   ├── Engine/        # C++ native engine
-│   └── Game/          # C# game logic
-├── scripts/lua/       # Lua game scripts
-├── assets/            # Game assets (sprites, sounds)
-└── tests/             # Unit and integration tests
-```
-
-## 📚 Documentation
-
-### Getting Started
-- **[Build Setup](docs/BUILD_SETUP.md)** - Build instructions and local development workflow
-- **[Visual Studio 2022 Setup](docs/VS2022_SETUP.md)** - VS2022 debugging guide with mixed-mode C++/C# support
-- **[Settings System](docs/SETTINGS_SYSTEM.md)** - Game settings and renderer configuration (Windows/DirectX 11 default)
-- **[Scale Reference](docs/SCALE_REFERENCE.md)** - Game scale constants and design guidelines (Player is 2.5 blocks tall)
-- **[Roadmap](ROADMAP.md)** - Development roadmap with 2D world generation plans
-
-### Systems Documentation
-- **[Architecture](docs/ARCHITECTURE.md)** - System design and technical overview
-- **[UI Framework](docs/UI_FRAMEWORK.md)** - User interface system for inventory, crafting, and menus
-- **[Terrain Generation](docs/TERRAIN_GENERATION.md)** - 2D procedural terrain with biomes and caves
-- **[Vegetation System](docs/VEGETATION_SYSTEM.md)** - Tree and flora generation with biome-specific placement
-- **[Water System](docs/WATER_SYSTEM.md)** - River, lake, and ocean generation
-- **[Mining & Building System](docs/MINING_BUILDING_SYSTEM.md)** - Block mining, resource collection, and building mechanics
-- **[Crafting System](docs/CRAFTING_SYSTEM.md)** - Recipe-based item crafting and material processing
-- **[Swimming Mechanics](docs/SWIMMING_MECHANICS.md)** - Swimming, breath management, and water flow physics
-- **[Collision Detection](docs/COLLISION_SYSTEM.md)** - AABB collision detection, entity and terrain collision, sliding response
-- **[Animation System](docs/ANIMATION_SYSTEM.md)** - Sprite animation and character customization
-- **[Camera System](docs/CAMERA_SYSTEM.md)** - 2D camera with following, zoom, and bounds
-- **[Camera Features](docs/CAMERA_FEATURES.md)** - Parallax scrolling and look-ahead systems
-- **[Cinematic Camera](docs/CINEMATIC_CAMERA.md)** - Cinematic camera movements for cutscenes with easing functions
-
-### Development Resources
-- **[Sprite Assets](docs/SPRITE_ASSETS.md)** - Sprite creation guidelines and specifications
-- **[Procedural Generation](docs/PROCEDURAL_GENERATION.md)** - Dungeon generation algorithms
-- **[Lua Scripting](docs/LUA_SCRIPTING.md)** - Scripting API and examples
-- **[C++/C# Integration](docs/CPP_CSHARP_INTEGRATION.md)** - Interop patterns and best practices
-
 ## 🚀 Quick Start
 
 ### Prerequisites
-**Windows Platform Required:**
-- Windows 10 or Windows 11
-- Visual Studio 2022 (v17.8+) with C++ Desktop Development workload
-- .NET 9 SDK
-- CMake 3.20+
-- DirectX 11 (included with Windows)
-- DirectX 12 (optional, for high-performance rendering)
-- SDL2 development libraries (optional, for cross-platform testing)
+- **Unity 2022.3 LTS** or newer (Download from [Unity Hub](https://unity.com/download))
+- **Windows 10/11**, **macOS**, or **Linux**
 
-### Building Locally
+### Setup
 
-**Note:** This project is configured for **Windows-only** with **DirectX 11 as the default renderer**. The renderer can be changed in the game settings menu (the game will restart with the new renderer).
+1. **Install Unity Hub and Unity 2022.3 LTS**
+2. **Clone this repository:**
+   ```bash
+   git clone https://github.com/shifty81/unity-chronicles.git
+   ```
+3. **Open the project in Unity Hub**
+4. **Open the main scene:** `Assets/Scenes/MainScene.unity`
+5. **Press Play ▶️** to run the game
 
-#### Quick Build (Recommended for Local Development)
+**For detailed setup instructions, see [README_UNITY.md](README_UNITY.md)**
 
-```bash
-# Clone the repository
-git clone https://github.com/shifty81/ChroniclesOfADrifter.git
-cd ChroniclesOfADrifter
+### Controls
 
-# Run the automated build script (Windows only)
-build.bat
+- **WASD** or **Arrow Keys**: Move
+- **Space** or **Left Mouse**: Attack
+- **I**: Inventory (coming soon)
+- **C**: Crafting (coming soon)
+- **ESC**: Pause
 
-# Run the game (default: DirectX 11 renderer on Windows)
-cd src/Game
-dotnet run -c Release
+## 📚 Documentation
 
-# Use DirectX 12 renderer on Windows (high performance, requires compatible GPU)
-set CHRONICLES_RENDERER=dx12  # Windows Command Prompt
-# or
-$env:CHRONICLES_RENDERER="dx12"  # Windows PowerShell
-dotnet run -c Release
+**Unity Version:**
+- [Unity Setup Guide](README_UNITY.md) - Complete Unity project setup
+- [Game Features](README_UNITY.md#-game-features) - Implemented features
+- [Migration Status](README_UNITY.md#-migration-status) - Conversion progress
 
-# Use SDL2 renderer (optional, for cross-platform testing if SDL2 is installed)
-set CHRONICLES_RENDERER=sdl2  # Windows Command Prompt
-# or
-$env:CHRONICLES_RENDERER="sdl2"  # Windows PowerShell
-dotnet run -c Release
-```
-
-#### Using Visual Studio 2022 (Recommended for Debugging)
-
-**For the best debugging experience with mixed-mode C++/C# debugging:**
-
-1. Open `ChroniclesOfADrifter.sln` in Visual Studio 2022
-2. Select **Build → Build Solution** (Ctrl+Shift+B)
-3. Press **F5** to start debugging with breakpoints in both C++ and C# code
-
-See the **[Visual Studio 2022 Setup Guide](docs/VS2022_SETUP.md)** for detailed instructions.
-
-#### Manual Build
-
-```bash
-# Build C++ engine
-mkdir build && cd build
-cmake ..
-cmake --build . --config Release
-
-# Build C# game
-cd ../src/Game
-dotnet build -c Release
-
-# Run the game
-dotnet run -c Release
-```
-
-### Running the Demo
-
-The current implementation includes multiple demo modes:
-- **Complete Game Loop Demo**: All systems integrated (`dotnet run -c Release -- complete`)
-- **Playable Demo**: Player with terrain and combat
-- **ECS Demo**: Player entity with WASD/Arrow key movement
-- **Lua Scripting Demo**: Goblin AI controlled by Lua script
-- **Visual Demo**: Graphical rendering demo
-- **Mining Demo**: Interactive mining and building
-- **Collision Demo**: Collision detection showcase
-- **Creature Spawn Demo**: Enemy spawning system
-- **Crafting Demo**: Crafting system showcase
-- **Map Editor**: Real-time scene editing
-
-**To run the complete game loop demo:**
-```bash
-cd src/Game
-dotnet run -c Release -- complete
-```
-
-See [BUILD_SETUP.md](docs/BUILD_SETUP.md) for detailed instructions.
+**Original Custom Engine Documentation** (for reference):
+- The `docs/` folder contains documentation from the original C++/.NET engine version
+- These are kept for reference but may not apply to the Unity version
 
 ## 🎯 Current Status: Implementation Phase
 
