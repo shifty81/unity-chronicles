@@ -1,0 +1,192 @@
+using ChroniclesOfADrifter.ECS;
+using ChroniclesOfADrifter.ECS.Components;
+using ChroniclesOfADrifter.ECS.Systems;
+using ChroniclesOfADrifter.Terrain;
+
+namespace ChroniclesOfADrifter.Scenes;
+
+/// <summary>
+/// Playable demo scene with combat and multiple enemies integrated with procedural terrain
+/// </summary>
+public class PlayableDemoScene : Scene
+{
+    private ChunkManager? chunkManager;
+    private TerrainGenerator? terrainGenerator;
+    
+    public override void OnLoad()
+    {
+        Console.WriteLine("[PlayableDemo] Loading playable demo scene...");
+        
+        // Initialize terrain generation
+        terrainGenerator = new TerrainGenerator(seed: 12345);
+        chunkManager = new ChunkManager();
+        chunkManager.SetTerrainGenerator(terrainGenerator);
+        
+        // Store chunk manager as shared resource
+        World.SetSharedResource("ChunkManager", chunkManager);
+        
+        Console.WriteLine("[PlayableDemo] Terrain generator initialized with seed: 12345");
+        
+        // Add systems
+        World.AddSystem(new ScriptSystem());
+        World.AddSystem(new PlayerInputSystem());
+        World.AddSystem(new CameraInputSystem());
+        World.AddSystem(new MovementSystem());
+        World.AddSystem(new CameraSystem());
+        World.AddSystem(new CameraLookAheadSystem()); // New: Camera look-ahead based on velocity
+        World.AddSystem(new ScreenShakeSystem()); // New: Screen shake effects
+        World.AddSystem(new CameraZoneSystem()); // New: Camera zones with different behaviors
+        World.AddSystem(new ParallaxSystem()); // New: Parallax scrolling for depth
+        World.AddSystem(new CombatSystem());
+        World.AddSystem(new LightingSystem()); // Add lighting system for underground
+        World.AddSystem(new TerrainRenderingSystem()); // NEW: Render terrain from ChunkManager
+        
+        // Create player entity at spawn point (on surface)
+        var player = World.CreateEntity();
+        World.AddComponent(player, new PlayerComponent { Speed = 150.0f });
+        World.AddComponent(player, new PositionComponent(500, 150)); // Spawn on surface (Y=150 is surface level)
+        World.AddComponent(player, new VelocityComponent());
+        World.AddComponent(player, new SpriteComponent(0, 32, 32));
+        World.AddComponent(player, new HealthComponent(100));
+        World.AddComponent(player, new CombatComponent(damage: 15f, range: 100f, cooldown: 0.3f));
+        
+        // Add player light source (personal lantern)
+        World.AddComponent(player, new LightSourceComponent(
+            radius: 8.0f,
+            intensity: 1.0f,
+            type: LightSourceType.Player
+        ));
+        
+        // Create camera entity that follows player
+        var camera = World.CreateEntity();
+        var cameraComponent = new CameraComponent(1920, 1080)
+        {
+            Zoom = 1.0f,
+            FollowSpeed = 8.0f
+        };
+        World.AddComponent(camera, cameraComponent);
+        World.AddComponent(camera, new PositionComponent(500, 150)); // Start at player position
+        World.AddComponent(camera, new ScreenShakeComponent()); // Enable screen shake
+        CameraSystem.SetFollowTarget(World, camera, player, followSpeed: 8.0f);
+        
+        // Pre-generate initial chunks around player spawn
+        var playerPos = World.GetComponent<PositionComponent>(player);
+        if (playerPos != null && chunkManager != null)
+        {
+            chunkManager.UpdateChunks(playerPos.X);
+            Console.WriteLine($"[PlayableDemo] Generated {chunkManager.GetLoadedChunkCount()} initial chunks");
+        }
+        
+        // Enable camera look-ahead for smooth camera movement
+        CameraLookAheadSystem.EnableLookAhead(World, camera, 
+            lookAheadDistance: 100.0f, 
+            lookAheadSpeed: 3.0f, 
+            offsetScale: 0.15f);
+        
+        // Create parallax background layers for depth
+        CreateParallaxLayers();
+        
+        // Create camera zones for different areas
+        CreateCameraZones();
+        
+        // Create multiple goblin enemies in different positions (on surface)
+        CreateGoblin(World, 600, 150);
+        CreateGoblin(World, 800, 150);
+        CreateGoblin(World, 400, 150);
+        CreateGoblin(World, 700, 150);
+        CreateGoblin(World, 500, 200);
+        
+        Console.WriteLine("[PlayableDemo] Demo scene loaded!");
+        Console.WriteLine("[PlayableDemo] You're in a procedurally generated world!");
+        Console.WriteLine("[PlayableDemo] Fight the goblins! Use SPACE to attack when near enemies.");
+        Console.WriteLine("[PlayableDemo] Use WASD or Arrow keys to move around the terrain");
+        Console.WriteLine("[PlayableDemo] Use +/- keys to zoom in/out");
+        Console.WriteLine("[PlayableDemo] Move between areas to see camera zones change behavior!");
+        Console.WriteLine("[PlayableDemo] Camera features: look-ahead, parallax depth, screen shake, and dynamic zones!");
+    }
+    
+    private void CreateParallaxLayers()
+    {
+        // Layer 0: Sky (static background)
+        var sky = ParallaxSystem.CreateParallaxLayer(World, "Sky", 
+            parallaxFactor: 0.0f, 
+            zOrder: -150,
+            visualType: ParallaxVisualType.Sky,
+            color: ConsoleColor.DarkBlue,
+            density: 0.5f);
+        
+        // Layer 1: Clouds (slowly scrolling)
+        var clouds = ParallaxSystem.CreateParallaxLayer(World, "Clouds",
+            parallaxFactor: 0.2f,
+            zOrder: -100,
+            visualType: ParallaxVisualType.Clouds,
+            color: ConsoleColor.DarkGray,
+            density: 0.3f,
+            autoScrollX: 2.0f);
+        
+        // Layer 2: Distant mountains
+        var mountains = ParallaxSystem.CreateParallaxLayer(World, "Mountains",
+            parallaxFactor: 0.4f,
+            zOrder: -75,
+            visualType: ParallaxVisualType.Mountains,
+            color: ConsoleColor.DarkCyan,
+            density: 0.6f);
+        
+        // Layer 3: Mid background (subtle mist)
+        var mist = ParallaxSystem.CreateParallaxLayer(World, "Mist",
+            parallaxFactor: 0.6f,
+            zOrder: -25,
+            visualType: ParallaxVisualType.Mist,
+            color: ConsoleColor.DarkGray,
+            density: 0.15f,
+            autoScrollX: 1.0f);
+        
+        // Note: Main gameplay layer has parallax factor 1.0 (moves with camera)
+        // Foreground layers would have parallax > 1.0 (move faster)
+    }
+    
+    private void CreateCameraZones()
+    {
+        // Zone 1: Safe zone (left side) - slower camera, zoomed in
+        CameraZoneSystem.CreateCameraZone(World, "Safe Zone",
+            minX: 0, maxX: 640, minY: 0, maxY: 1080,
+            zoom: 1.3f,           // Zoomed in for detail
+            followSpeed: 3.0f,    // Slower follow for calm area
+            enableLookAhead: false, // No look-ahead in safe zones
+            priority: 1);
+        
+        // Zone 2: Combat zone (center) - normal settings
+        CameraZoneSystem.CreateCameraZone(World, "Combat Zone",
+            minX: 640, maxX: 1280, minY: 0, maxY: 1080,
+            zoom: 1.0f,           // Normal zoom
+            followSpeed: 8.0f,    // Fast follow for action
+            enableLookAhead: true,
+            lookAheadDistance: 100.0f,
+            priority: 1);
+        
+        // Zone 3: Boss arena (right side) - zoomed out, very responsive
+        CameraZoneSystem.CreateCameraZone(World, "Boss Arena",
+            minX: 1280, maxX: 1920, minY: 0, maxY: 1080,
+            zoom: 0.8f,           // Zoomed out to see more
+            followSpeed: 12.0f,   // Very fast follow
+            enableLookAhead: true,
+            lookAheadDistance: 150.0f,
+            priority: 1);
+    }
+    
+    private void CreateGoblin(World world, float x, float y)
+    {
+        var goblin = world.CreateEntity();
+        world.AddComponent(goblin, new PositionComponent(x, y));
+        world.AddComponent(goblin, new VelocityComponent());
+        world.AddComponent(goblin, new SpriteComponent(1, 24, 24));
+        world.AddComponent(goblin, new HealthComponent(30));
+        world.AddComponent(goblin, new CombatComponent(damage: 5f, range: 75f, cooldown: 1.0f));
+        world.AddComponent(goblin, new ScriptComponent("scripts/lua/enemies/goblin_ai.lua"));
+    }
+    
+    public override void OnUnload()
+    {
+        Console.WriteLine("[PlayableDemo] Unloading playable demo scene...");
+    }
+}
