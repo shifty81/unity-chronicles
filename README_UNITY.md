@@ -53,6 +53,7 @@ unity-chronicles/
 - **[Unity Setup](#unity-setup)** - How to open and run the project in Unity
 - **[Build Instructions](#building)** - How to build the game
 - **[Game Features](#-game-features)** - Overview of implemented features
+- **[Unity Asset Guide](UNITY_ASSET_GUIDE.md)** - **📦 Complete visual guide to generating and adding assets to scenes**
 
 ## 🚀 Quick Start
 

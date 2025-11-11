@@ -61,6 +61,7 @@ Chronicles of a Drifter features:
 - [Unity Setup Guide](README_UNITY.md) - Complete Unity project setup
 - [Project Status](PROJECT_STATUS_UNITY.md) - Current implementation status
 - [Unity Implementation Guide](UNITY_IMPLEMENTATION_GUIDE.md) - System details
+- [Unity Asset Guide](UNITY_ASSET_GUIDE.md) - **📦 Complete guide to generating and adding assets to scenes**
 
 
 ## 🎯 Current Status

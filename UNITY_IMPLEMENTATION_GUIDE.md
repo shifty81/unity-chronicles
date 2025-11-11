@@ -256,6 +256,8 @@ Examples:
 
 ## Next Steps for Developers
 
+**For a comprehensive guide on creating and managing assets, see the [Unity Asset Guide](UNITY_ASSET_GUIDE.md).**
+
 1. **Set up Tilemap:**
    - Create Tilemap GameObject
    - Import tile sprites
@@ -308,5 +310,9 @@ Currently, the systems can be tested by:
 - Singleton pattern for managers
 
 ---
+
+## Additional Resources
+
+- **[Unity Asset Guide](UNITY_ASSET_GUIDE.md)** - Complete visual guide for generating and adding assets to scenes
 
 **For questions or contributions**, refer to the main README or open an issue on GitHub.
