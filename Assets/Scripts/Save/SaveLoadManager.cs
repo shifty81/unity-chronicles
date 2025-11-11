@@ -36,6 +36,7 @@ namespace ChroniclesOfADrifter.Save
             {
                 Debug.LogWarning($"Multiple managers are loaded of type: {GetType().Name}. Destroying duplicate instance on GameObject: {gameObject.name}");
                 Destroy(gameObject);
+                return;
             }
         }
         
