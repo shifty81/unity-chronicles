@@ -14,12 +14,11 @@ Chronicles of a Drifter features:
 
 ## 🛠️ Technology Stack
 
-### Unity 2022.3 LTS
+### Unity 6 LTS (6000.0.x)
 - **2D rendering pipeline** with sprite-based graphics
 - **Unity Physics 2D** for collision detection
 - **Tilemap system** for terrain generation
 - **Cinemachine** for advanced camera controls (optional)
-- **Lua scripting** via MoonSharp for AI and gameplay
 
 ### .NET / C# Game Logic
 - MonoBehaviour-based component architecture
@@ -58,7 +57,7 @@ unity-chronicles/
 ## 🚀 Quick Start
 
 ### Prerequisites
-- **Unity 2022.3 LTS** or newer (2022.3.10f1 recommended)
+- **Unity 6 LTS (6000.0.x)** or newer (6000.0.27f1 recommended)
 - **Windows 10/11**, **macOS**, or **Linux**
 - **Git** for version control
 
@@ -67,11 +66,11 @@ unity-chronicles/
 1. **Install Unity Hub**
    - Download from: https://unity.com/download
 
-2. **Install Unity 2022.3 LTS**
+2. **Install Unity 6 LTS**
    - Open Unity Hub
    - Go to "Installs" tab
    - Click "Install Editor"
-   - Select version 2022.3.10f1 or newer
+   - Select Unity 6 LTS (6000.0.27f1 or newer)
    - Include these modules:
      - Windows Build Support (for Windows builds)
      - Mac Build Support (for macOS builds)  
@@ -133,7 +132,7 @@ This project has been converted from a custom C++/.NET engine to Unity.
 - [x] Core component system (Health, PlayerController, EnemyAI, Inventory)
 - [x] Camera follow system with look-ahead
 - [x] Basic game constants and settings
-- [x] Project configuration for Unity 2022.3 LTS
+- [x] Project configuration for Unity 6 LTS
 
 ### 🔄 In Progress
 - [ ] Terrain generation system (convert from custom to Unity Tilemap)
