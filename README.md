@@ -46,7 +46,10 @@ Chronicles of a Drifter features:
 4. **Open the main scene:** `Assets/Scenes/MainScene.unity`
 5. **Press Play ▶️** to run the game
 
-**💡 If you encounter errors, see [QUICK_FIX.md](QUICK_FIX.md)**
+**💡 Encountering TileTemplate compilation errors?**
+1. Run the verification script: `.\verify-packages.ps1` (Windows) or `./verify-packages.sh` (macOS/Linux)
+2. Follow the recommended cleanup steps
+3. See [QUICK_FIX.md](QUICK_FIX.md) for detailed solutions
 
 **For detailed setup instructions, see [README_UNITY.md](README_UNITY.md)**
 
@@ -65,6 +68,7 @@ Chronicles of a Drifter features:
 - [Unity Implementation Guide](UNITY_IMPLEMENTATION_GUIDE.md) - System details
 - [Unity Asset Guide](UNITY_ASSET_GUIDE.md) - **📦 Complete guide to generating and adding assets to scenes**
 - [Quick Fix Guide](QUICK_FIX.md) - **⚡ Fast solutions for common errors**
+- [Cleanup Tools Guide](CLEANUP_TOOLS.md) - **🧹 Package cache cleanup scripts documentation**
 - [Troubleshooting Guide](TROUBLESHOOTING.md) - **🔧 Comprehensive solutions for issues and errors**
 
 
