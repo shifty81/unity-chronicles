@@ -315,6 +315,7 @@ The codebase is now ready for:
 ## 📞 Support
 
 For questions about:
+- **Asset Creation** - See **[UNITY_ASSET_GUIDE.md](UNITY_ASSET_GUIDE.md)** 📦
 - **Systems** - See UNITY_IMPLEMENTATION_GUIDE.md
 - **Setup** - See README_UNITY.md  
 - **Overview** - See CONVERSION_SUMMARY.md
