@@ -44,9 +44,18 @@ Updated `Packages/manifest.json`:
 - ✅ `packages-lock.json` has been updated to lock version 6.0.1
 
 ### Next Steps for Developers
-1. Open the project in Unity 6 LTS
-2. Unity will automatically resolve and download the updated packages (version 6.0.1)
-3. If using Visual Studio Code, install the recommended extensions:
+1. **If you encounter TileTemplate compilation errors:**
+   - Close Unity Editor completely
+   - Delete the `Library` folder to clear the package cache
+   - Reopen the project in Unity 6 LTS
+   - Unity will download the correct package version (6.0.1)
+   - See [TROUBLESHOOTING.md](TROUBLESHOOTING.md) for detailed instructions
+
+2. **Normal setup (no errors):**
+   - Open the project in Unity 6 LTS
+   - Unity will automatically resolve and download the updated packages (version 6.0.1)
+
+3. **If using Visual Studio Code**, install the recommended extensions:
    - [Unity for Visual Studio Code](https://marketplace.visualstudio.com/items?itemName=visualstudiotoolsforunity.vstuc)
    - [C# Dev Kit](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csdevkit)
 
