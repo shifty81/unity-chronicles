@@ -194,6 +194,73 @@ This warning indicates that multiple instances of the TimeManager MonoBehaviour 
 - Use the singleton pattern's built-in protection (already implemented in code)
 - When loading scenes additively, use one "Manager Scene" that persists
 
+## Runtime Warnings
+
+### Multiple Manager Warnings
+
+**Warning Message:**
+```
+Multiple managers are loaded of type: TimeManager
+Multiple managers are loaded of type: GameManager
+Multiple managers are loaded of type: FarmingManager
+```
+
+**Cause:**
+These warnings appear when Unity creates duplicate manager instances. This commonly happens:
+- During scene reloads in the editor (entering/exiting Play mode)
+- When loading scenes that contain manager GameObjects
+- During rapid scene transitions in development
+
+**Is This a Problem?**
+**No** - This is working as designed! The warnings confirm that the singleton protection is working correctly.
+
+**What's Happening:**
+1. A manager instance exists and is marked with `DontDestroyOnLoad`
+2. Unity loads a scene or creates a duplicate instance
+3. The singleton code detects the duplicate
+4. The duplicate is immediately destroyed
+5. A warning is logged to inform you (for debugging)
+
+**Solution:**
+- **If you see 1-2 warnings per manager**: Normal behavior, no action needed
+- **If you see many warnings (10+)**: Check if you have multiple scenes with the same manager GameObject
+- **To reduce warnings**: Remove manager GameObjects from scenes and let them be created automatically by the singleton pattern
+
+**How to Fix Multiple Instances in Scenes:**
+
+1. **Check your scenes:**
+   - Open each scene in your project
+   - Look for GameObjects named: TimeManager, GameManager, FarmingManager, etc.
+   - Delete any you find (the singleton will create them automatically)
+
+2. **Use prefabs for managers (optional):**
+   - Create a "Managers" prefab with all manager scripts
+   - Only include in your initial/boot scene
+   - All other scenes should be empty of managers
+
+**Code Explanation:**
+The warning comes from this protective code in each manager:
+```csharp
+if (Instance == null)
+{
+    Instance = this;
+    DontDestroyOnLoad(gameObject);
+}
+else
+{
+    Debug.LogWarning($"Multiple managers are loaded of type: {GetType().Name}");
+    Destroy(gameObject);
+    return;
+}
+```
+
+This ensures only one instance exists, even if Unity tries to create duplicates.
+
+**Bottom Line:**
+- ✅ These warnings are **informational**, not errors
+- ✅ The duplicate prevention is **working correctly**
+- ✅ No action is required unless you see excessive warnings (10+ per manager)
+
 ## Package Update Issues
 
 ### Packages Not Updating

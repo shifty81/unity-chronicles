@@ -51,6 +51,11 @@ Chronicles of a Drifter features:
 2. Follow the recommended cleanup steps
 3. See [QUICK_FIX.md](QUICK_FIX.md) for detailed solutions
 
+**💡 Visual Studio project compatibility issues?**
+1. Unity auto-generates .csproj and .sln files when you open the project
+2. See [VISUAL_STUDIO_SETUP.md](VISUAL_STUDIO_SETUP.md) for complete setup guide
+3. Always open scripts by double-clicking them in Unity Editor
+
 **For detailed setup instructions, see [README_UNITY.md](README_UNITY.md)**
 
 ### Controls
@@ -64,6 +69,7 @@ Chronicles of a Drifter features:
 ## 📚 Documentation
 
 - [Unity Setup Guide](README_UNITY.md) - Complete Unity project setup
+- [Visual Studio Setup Guide](VISUAL_STUDIO_SETUP.md) - **🔧 Fix Visual Studio compatibility issues**
 - [Project Status](PROJECT_STATUS_UNITY.md) - Current implementation status
 - [Unity Implementation Guide](UNITY_IMPLEMENTATION_GUIDE.md) - System details
 - [Unity Asset Guide](UNITY_ASSET_GUIDE.md) - **📦 Complete guide to generating and adding assets to scenes**
