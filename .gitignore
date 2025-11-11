@@ -43,6 +43,15 @@ crashlytics-build.properties
 # Visual Studio cache directory
 .vs/
 
+# Visual Studio auto-generated files
+*.csproj
+*.sln
+*.suo
+*.user
+*.userprefs
+*.pidb
+*.unityproj
+
 # Rider
 .idea/
 
