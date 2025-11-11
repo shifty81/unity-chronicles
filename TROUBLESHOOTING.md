@@ -16,7 +16,7 @@ error CS0246: The type or namespace name 'TileTemplate' could not be found (are 
 ```
 
 **Cause:**
-Unity is using a cached version of the `com.unity.2d.tilemap.extras` package that is incompatible with Unity 6 LTS. Despite the manifest specifying version 6.0.1, Unity may still be referencing an older cached version in the `Library/PackageCache` folder or even a system-wide Unity package cache.
+Unity is using a cached version of the `com.unity.2d.tilemap.extras` package from version 6.0.1, which has a bug where `AutoTileTemplate` and `RuleTileTemplate` inherit from a non-existent `TileTemplate` base class. Despite the manifest specifying version 7.0.0 (which fixes the bug), Unity may still be referencing an older cached version in the `Library/PackageCache` folder or even a system-wide Unity package cache.
 
 **Solution:**
 

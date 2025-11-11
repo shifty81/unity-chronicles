@@ -156,7 +156,9 @@ for advanced solutions
 
 ### Why Do These Errors Happen?
 
-Unity 6 LTS uses version 6.0.1 of `com.unity.2d.tilemap.extras`, which removed the `TileTemplate` base class. However, Unity may cache older versions (4.x, 5.x) that still use `TileTemplate`. 
+**Version 6.0.1 of `com.unity.2d.tilemap.extras` contained a critical bug** where the `AutoTileTemplate` and `RuleTileTemplate` classes inherited from a `TileTemplate` base class that didn't exist in the package.
+
+This project has been updated to use **version 7.0.0** which fixes the bug. However, Unity may cache the buggy version (6.0.1) from previous openings of the project or from other Unity projects.
 
 Cache locations:
 - **Project cache:** `Library/PackageCache/` (cleaned by standard cleanup)
@@ -165,7 +167,7 @@ Cache locations:
   - macOS: `~/Library/Unity/cache`
   - Linux: `~/.config/unity3d/cache`
 
-Even with correct `manifest.json` and `packages-lock.json`, Unity may use stale global caches.
+Even with correct `manifest.json` and `packages-lock.json` specifying version 7.0.0, Unity may use the buggy cached version 6.0.1 from global caches.
 
 ### What Gets Regenerated?
 
