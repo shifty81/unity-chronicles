@@ -8,7 +8,16 @@ Library\PackageCache\com.unity.2d.tilemap.extras@[hash]\Editor\Tiles\AutoTile\Au
 error CS0246: The type or namespace name 'TileTemplate' could not be found
 ```
 
-**Quick Fix:**
+**Step 1: Verify the problem**
+```bash
+# Windows PowerShell
+.\verify-packages.ps1
+
+# macOS/Linux/Git Bash  
+./verify-packages.sh
+```
+
+**Step 2: Standard Fix (Try this first)**
 ```bash
 # Windows PowerShell
 .\cleanup-unity-cache.ps1
@@ -17,12 +26,30 @@ error CS0246: The type or namespace name 'TileTemplate' could not be found
 ./cleanup-unity-cache.sh
 ```
 
-**Manual Fix:**
-1. Close Unity Editor
-2. Delete `Library` folder
-3. Reopen project in Unity
+**Step 3: Advanced Fix (If standard fix didn't work)**
 
-**Why it works:** Forces Unity to re-download the correct package version (6.0.1) instead of using the old cached version.
+Still getting errors? Try the advanced cleanup:
+```bash
+# Windows PowerShell
+.\advanced-cleanup.ps1
+
+# macOS/Linux/Git Bash  
+./advanced-cleanup.sh
+```
+
+**Important:** Close **both Unity Editor AND Unity Hub** before running cleanup scripts.
+
+**Manual Fix:**
+1. Close Unity Editor AND Unity Hub
+2. Delete `Library` folder
+3. Delete `Packages/packages-lock.json`
+4. (Optional) Delete Unity global cache:
+   - Windows: `%LOCALAPPDATA%\Unity\cache`
+   - macOS: `~/Library/Unity/cache`
+   - Linux: `~/.config/unity3d/cache`
+5. Reopen project through Unity Hub
+
+**Why it works:** Forces Unity to re-download the correct package version (6.0.1) instead of using old cached versions. The advanced cleanup also clears system-wide Unity caches that can persist across projects.
 
 ---
 

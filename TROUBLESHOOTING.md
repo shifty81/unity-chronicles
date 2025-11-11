@@ -16,11 +16,24 @@ error CS0246: The type or namespace name 'TileTemplate' could not be found (are 
 ```
 
 **Cause:**
-Unity is using a cached version of the `com.unity.2d.tilemap.extras` package that is incompatible with Unity 6 LTS. Despite the manifest specifying version 6.0.1, Unity may still be referencing an older cached version in the `Library/PackageCache` folder.
+Unity is using a cached version of the `com.unity.2d.tilemap.extras` package that is incompatible with Unity 6 LTS. Despite the manifest specifying version 6.0.1, Unity may still be referencing an older cached version in the `Library/PackageCache` folder or even a system-wide Unity package cache.
 
 **Solution:**
 
-**Option 1: Use the cleanup scripts (Easiest)**
+**Step 1: Verify the issue**
+First, run the verification script to confirm the problem:
+```bash
+# On Windows (PowerShell)
+.\verify-packages.ps1
+
+# On macOS/Linux/Git Bash
+./verify-packages.sh
+```
+This will check your package installation and identify the specific issue.
+
+**Step 2: Choose the appropriate cleanup method**
+
+**Option A: Standard cleanup (Try this first)**
 ```bash
 # On Windows (PowerShell)
 .\cleanup-unity-cache.ps1
@@ -30,8 +43,32 @@ Unity is using a cached version of the `com.unity.2d.tilemap.extras` package tha
 ```
 These interactive scripts will guide you through cleaning the package cache safely.
 
-**Option 2: Manual cleanup**
-1. **Close Unity Editor completely**
+**Option B: Advanced cleanup (If standard cleanup didn't work)**
+
+If you're **still getting errors after running the standard cleanup**, use the advanced script:
+```bash
+# On Windows (PowerShell)
+.\advanced-cleanup.ps1
+
+# On macOS/Linux/Git Bash
+./advanced-cleanup.sh
+```
+
+The advanced cleanup script performs more aggressive cache clearing:
+- Removes project Library folder completely
+- Cleans packages-lock.json
+- **Also cleans global Unity package caches** (system-wide cache that persists across projects)
+- Removes Temp folder
+
+**Important Notes:**
+- **Close Unity Hub** in addition to Unity Editor before running cleanup scripts
+- The global cache cleanup is **safe** - Unity will regenerate it automatically
+- Allow 5-10 minutes for Unity to reimport all assets after cleanup
+
+**Option C: Manual cleanup**
+If you prefer to do it manually:
+
+1. **Close Unity Editor AND Unity Hub completely**
 2. **Delete the Library folder:**
    ```bash
    # On Windows (PowerShell)
@@ -40,28 +77,80 @@ These interactive scripts will guide you through cleaning the package cache safe
    # On macOS/Linux
    rm -rf Library
    ```
-3. **Reopen the project in Unity**
-   - Unity will regenerate the Library folder
-   - The correct package version (6.0.1) will be downloaded from the Unity Package Registry
-   - Compilation errors should be resolved
-
-**Alternative Solution:**
-If you want to preserve other cached data:
-1. Close Unity Editor
-2. Delete only the PackageCache folder:
+3. **Delete packages-lock.json:**
    ```bash
    # On Windows (PowerShell)
-   Remove-Item -Recurse -Force Library\PackageCache
+   Remove-Item Packages\packages-lock.json
 
    # On macOS/Linux
-   rm -rf Library/PackageCache
+   rm Packages/packages-lock.json
    ```
-3. Reopen Unity
+4. **(Optional but recommended) Clean global Unity cache:**
+   ```bash
+   # On Windows (PowerShell)
+   Remove-Item -Recurse -Force $env:LOCALAPPDATA\Unity\cache
+
+   # On macOS
+   rm -rf ~/Library/Unity/cache
+
+   # On Linux
+   rm -rf ~/.config/unity3d/cache
+   ```
+5. **Reopen Unity Hub, then open the project**
+   - Unity will regenerate the Library folder
+   - The correct package version (6.0.1) will be downloaded from the Unity Package Registry
+   - Wait for asset reimport to complete (5-10 minutes)
+   - Compilation errors should be resolved
+
+**Still Having Issues?**
+
+If errors persist after advanced cleanup:
+
+1. **Verify Unity version:**
+   - Ensure you're using Unity 6 LTS (6000.0.x)
+   - Check in Unity Hub → Installs
+   - This project requires Unity 6000.0.62f1 or later
+
+2. **Check for Unity Hub updates:**
+   - Update Unity Hub to the latest version
+   - Sometimes old Unity Hub versions cache packages incorrectly
+
+3. **Try opening from Unity Hub:**
+   - Don't open Unity directly
+   - Always open through Unity Hub
+   - Let Unity Hub manage the package resolution
+
+4. **Check Unity Registry connectivity:**
+   - Ensure you can reach packages.unity.com
+   - Check firewall/proxy settings
+   - Try toggling "Enable Pre-release Packages" in Package Manager
+
+5. **Last resort - Nuclear option:**
+   ```bash
+   # Close Unity and Unity Hub completely
+   # Delete ALL Unity caches
+   
+   # Windows
+   Remove-Item -Recurse -Force $env:LOCALAPPDATA\Unity
+   Remove-Item -Recurse -Force $env:APPDATA\Unity
+   
+   # macOS
+   rm -rf ~/Library/Unity
+   rm -rf ~/Library/Preferences/com.unity3d.*
+   
+   # Linux
+   rm -rf ~/.config/unity3d
+   rm -rf ~/.local/share/unity3d
+   
+   # Then reopen project through Unity Hub
+   ```
 
 **Prevention:**
-- Always use Unity Hub to manage Unity versions
+- Always use Unity Hub to manage Unity versions and projects
 - Keep Unity 6 LTS updated to the latest patch version
 - When updating packages, close and reopen Unity to ensure cache is refreshed
+- Don't manually edit PackageCache - let Unity manage it
+- Close Unity Hub when running cleanup scripts
 
 ## Runtime Warnings
 
