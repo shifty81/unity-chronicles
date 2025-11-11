@@ -24,7 +24,10 @@ namespace ChroniclesOfADrifter.Crafting
             if (Instance == null)
                 Instance = this;
             else
+            {
+                Debug.LogWarning($"Multiple managers are loaded of type: {GetType().Name}. Destroying duplicate instance on GameObject: {gameObject.name}");
                 Destroy(gameObject);
+            }
             
             InitializeRecipes();
         }
