@@ -49,7 +49,7 @@ Still getting errors? Try the advanced cleanup:
    - Linux: `~/.config/unity3d/cache`
 5. Reopen project through Unity Hub
 
-**Why it works:** Forces Unity to re-download the correct package version (6.0.1) instead of using old cached versions. The advanced cleanup also clears system-wide Unity caches that can persist across projects.
+**Why it works:** This project uses version 7.0.0 of the package which fixes a bug in version 6.0.1. The cleanup forces Unity to download the correct fixed version (7.0.0) instead of using the old buggy cached version (6.0.1). The advanced cleanup also clears system-wide Unity caches that can persist across projects.
 
 ---
 

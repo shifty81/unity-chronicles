@@ -68,6 +68,7 @@ Chronicles of a Drifter features:
 - [Unity Implementation Guide](UNITY_IMPLEMENTATION_GUIDE.md) - System details
 - [Unity Asset Guide](UNITY_ASSET_GUIDE.md) - **📦 Complete guide to generating and adding assets to scenes**
 - [Quick Fix Guide](QUICK_FIX.md) - **⚡ Fast solutions for common errors**
+- [TileTemplate Bug Explanation](TILETEMPLATE_BUG_EXPLANATION.md) - **🐛 Technical details about the TileTemplate bug and fix**
 - [Cleanup Tools Guide](CLEANUP_TOOLS.md) - **🧹 Package cache cleanup scripts documentation**
 - [Troubleshooting Guide](TROUBLESHOOTING.md) - **🔧 Comprehensive solutions for issues and errors**
 

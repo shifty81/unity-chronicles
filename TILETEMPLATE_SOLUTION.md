@@ -14,9 +14,11 @@ error CS0246: The type or namespace name 'TileTemplate' could not be found
 
 ## Why This Happens
 
-Unity 6 LTS requires version **6.0.1** of the `com.unity.2d.tilemap.extras` package, which removed the deprecated `TileTemplate` class. However, Unity may be using **cached files from an older version** (4.x or 5.x) that still references this class.
+**This is a bug in version 6.0.1 of the `com.unity.2d.tilemap.extras` package.** In that version, the `AutoTileTemplate` and `RuleTileTemplate` classes inherit from a `TileTemplate` base class that doesn't exist in the package.
 
-Even though the project's `manifest.json` and `packages-lock.json` specify version 6.0.1, Unity has multiple cache locations that can serve stale packages:
+This project has been updated to use version **7.0.0** which fixes this issue. However, if you're still seeing the error, Unity may be using **cached files from the older buggy version** (6.0.1 or earlier).
+
+Even though the project's `manifest.json` and `packages-lock.json` specify version 7.0.0, Unity has multiple cache locations that can serve stale packages:
 
 1. **Project cache**: `Library/PackageCache/` (specific to this project)
 2. **System-wide cache**: OS-specific location (shared across all Unity projects)
@@ -24,7 +26,7 @@ Even though the project's `manifest.json` and `packages-lock.json` specify versi
    - macOS: `~/Library/Unity/cache`
    - Linux: `~/.config/unity3d/cache`
 
-The standard "delete Library folder" fix only clears #1, which is why errors sometimes persist.
+The standard "delete Library folder" fix only clears #1. **To completely fix the TileTemplate bug, you need to clear cached versions so Unity downloads the fixed version 7.0.0 from the Unity Registry.**
 
 ## The Solution
 
@@ -106,14 +108,14 @@ If Step 1 found issues, start with the standard cleanup:
 
 ### Why Advanced Cleanup Works
 
-The advanced cleanup clears **system-wide Unity caches** that persist even after deleting the project's Library folder. This is the most common cause of persistent TileTemplate errors.
+The advanced cleanup clears **system-wide Unity caches** that persist even after deleting the project's Library folder. This forces Unity to download the correct version (7.0.0) from the Unity Package Registry, which has the bug fixed.
 
 Unity will automatically regenerate all deleted caches from:
-- Your project's `manifest.json` (specifies package versions)
-- Unity Package Registry (downloads correct versions)
+- Your project's `manifest.json` (specifies package version 7.0.0)
+- Unity Package Registry (downloads version 7.0.0 with the fix)
 - Your Assets folder (source of truth)
 
-Nothing is permanently lost - everything is rebuilt correctly.
+Nothing is permanently lost - everything is rebuilt correctly with the fixed package version.
 
 ## Quick Reference
 
@@ -201,13 +203,13 @@ For those interested in the technical details:
 5. If not found, downloads from `packages.unity.com`
 
 **The Bug:**
-When Unity upgraded from 2021/2022 to Unity 6, the tilemap.extras package changed from 4.x/5.x to 6.x. However, Unity's cache resolution sometimes uses #3 or #4 even when the manifest specifies a different version, especially if the package was previously cached.
+Version 6.0.1 of `com.unity.2d.tilemap.extras` had a bug where `AutoTileTemplate` and `RuleTileTemplate` classes inherited from a `TileTemplate` base class that didn't exist in the package. This bug was present in the package on the Unity Registry.
 
 **The Fix:**
-Clearing both project-level (#3) and system-level (#4) caches forces Unity to re-download the correct version (#5) specified in the manifest.
+This project now uses version 7.0.0 which fixes the bug. However, Unity's cache resolution sometimes uses #3 or #4 even when the manifest specifies a different version, especially if the buggy version (6.0.1) was previously cached. Clearing both project-level (#3) and system-level (#4) caches forces Unity to download the fixed version (#5) specified in the manifest.
 
 ---
 
 **Last Updated**: November 2025  
 **Unity Version**: 6 LTS (6000.0.62f1)  
-**Package Version**: com.unity.2d.tilemap.extras@6.0.1
+**Package Version**: com.unity.2d.tilemap.extras@7.0.0
