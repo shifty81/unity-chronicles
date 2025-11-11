@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 80108eb67008407880f11763c439d98e, type: 3}
+  m_Name: NPC_Sarah_Merchant
+  m_EditorClassIdentifier: 
+  npcName: Sarah
+  title: Merchant
+  description: A traveling merchant who sells seeds and tools.
+  icon: {fileID: 0}
+  personality: Business-minded but fair, always ready to trade.
+  birthday: Summer 22
+  defaultDialogue:
+  - Welcome! Take a look at my wares!
+  - I've got the finest seeds in the region!
+  - Need any tools? I've got you covered!
+  schedules: []
+  lovedGifts: []
+  likedGifts: []
+  dislikedGifts: []
+  hatedGifts: []

@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cdacb82892c74e93a910f51767fad9b6, type: 3}
+  m_Name: Crop_Wheat
+  m_EditorClassIdentifier: 
+  cropName: Wheat
+  description: Golden wheat for making flour. Grows in Spring and Fall.
+  icon: {fileID: 0}
+  growthStageDays:
+  - 3
+  - 3
+  - 2
+  growthStageSprites:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  requiresWater: 1
+  requiresTilling: 1
+  validSeasons:
+  - 0
+  - 2
+  harvestItemId: wheat
+  harvestQuantityMin: 1
+  harvestQuantityMax: 1
+  regrowsAfterHarvest: 0
+  regrowthDays: 0
+  seedPrice: 30
+  sellPrice: 60

@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41574ac7f82b4626a2ff8b7a0f310df3, type: 3}
+  m_Name: Crop_Carrot
+  m_EditorClassIdentifier: 
+  cropName: Carrot
+  description: A crunchy orange carrot. Grows in Spring.
+  icon: {fileID: 0}
+  growthStageDays:
+  - 2
+  - 2
+  - 3
+  growthStageSprites:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  requiresWater: 1
+  requiresTilling: 1
+  validSeasons:
+  - 0
+  harvestItemId: carrot
+  harvestQuantityMin: 1
+  harvestQuantityMax: 2
+  regrowsAfterHarvest: 0
+  regrowthDays: 0
+  seedPrice: 40
+  sellPrice: 80
