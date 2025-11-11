@@ -85,4 +85,16 @@ namespace ChroniclesOfADrifter
         
         #endregion
     }
+    
+    /// <summary>
+    /// Game seasons used across multiple systems (TimeManager, Farming, etc.)
+    /// </summary>
+    public enum Season
+    {
+        Spring,
+        Summer,
+        Fall,
+        Winter,
+        AllSeasons // Used for crops that can grow in any season
+    }
 }

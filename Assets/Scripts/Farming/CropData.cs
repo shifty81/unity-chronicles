@@ -34,15 +34,6 @@ namespace ChroniclesOfADrifter.Farming
         public int seedPrice = 50;
         public int sellPrice = 100;
         
-        public enum Season
-        {
-            Spring,
-            Summer,
-            Fall,
-            Winter,
-            AllSeasons
-        }
-        
         /// <summary>
         /// Get the total days to maturity
         /// </summary>
