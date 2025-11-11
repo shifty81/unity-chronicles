@@ -89,6 +89,13 @@ unity-chronicles/
    - Navigate to the cloned `unity-chronicles` folder
    - Select the folder (Unity will detect it as a project)
    - Wait for Unity to import all assets (first time may take a few minutes)
+   
+   **⚠️ If you encounter compilation errors about TileTemplate:**
+   - **Quick Fix:** Run the cleanup script:
+     - Windows: `.\cleanup-unity-cache.ps1`
+     - macOS/Linux: `./cleanup-unity-cache.sh`
+   - **Manual Fix:** Close Unity, delete the `Library` folder, reopen
+   - See [TROUBLESHOOTING.md](TROUBLESHOOTING.md) for detailed solutions
 
 5. **Run the Game**
    - In Unity, open the main scene: `Assets/Scenes/MainScene.unity`

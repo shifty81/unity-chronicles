@@ -46,6 +46,8 @@ Chronicles of a Drifter features:
 4. **Open the main scene:** `Assets/Scenes/MainScene.unity`
 5. **Press Play ▶️** to run the game
 
+**💡 If you encounter errors, see [QUICK_FIX.md](QUICK_FIX.md)**
+
 **For detailed setup instructions, see [README_UNITY.md](README_UNITY.md)**
 
 ### Controls
@@ -62,6 +64,8 @@ Chronicles of a Drifter features:
 - [Project Status](PROJECT_STATUS_UNITY.md) - Current implementation status
 - [Unity Implementation Guide](UNITY_IMPLEMENTATION_GUIDE.md) - System details
 - [Unity Asset Guide](UNITY_ASSET_GUIDE.md) - **📦 Complete guide to generating and adding assets to scenes**
+- [Quick Fix Guide](QUICK_FIX.md) - **⚡ Fast solutions for common errors**
+- [Troubleshooting Guide](TROUBLESHOOTING.md) - **🔧 Comprehensive solutions for issues and errors**
 
 
 ## 🎯 Current Status
