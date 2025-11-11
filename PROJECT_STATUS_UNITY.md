@@ -326,7 +326,10 @@ For questions about:
 ## 🔄 Recent Updates
 
 ### Package Updates (November 2025)
-- ✅ **Updated** `com.unity.2d.tilemap.extras` from 4.2.3 to 6.0.1 for Unity 6 LTS compatibility
+- ✅ **Updated** `com.unity.2d.tilemap.extras` from 4.2.3 → 6.0.1 → **7.0.0** for Unity 6 LTS compatibility
+  - Version 6.0.1 had a bug where `TileTemplate` base class was missing
+  - Version 7.0.0 fixes this critical bug
+  - See [TILETEMPLATE_BUG_EXPLANATION.md](TILETEMPLATE_BUG_EXPLANATION.md) for details
 - ✅ **Removed** deprecated `com.unity.ide.vscode` package (1.2.5 is not supported in Unity 6 LTS)
 - 📝 **Note:** For VS Code integration, use Microsoft's [Unity for Visual Studio Code](https://marketplace.visualstudio.com/items?itemName=visualstudiotoolsforunity.vstuc) extension instead
 
