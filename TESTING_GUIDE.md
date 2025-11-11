@@ -30,7 +30,7 @@ git checkout copilot/fix-tiletemplate-errors
 - ✅ No errors about `TileTemplate` type not found
 - ✅ No warnings about deprecated packages
 - ✅ Console shows "Compilation completed successfully"
-- ✅ `packages-lock.json` is automatically regenerated with correct versions
+- ✅ `packages-lock.json` has the correct version (6.0.1) locked
 
 #### 2. Existing Project Update Test
 If you already have the project open:
