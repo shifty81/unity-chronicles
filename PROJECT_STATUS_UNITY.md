@@ -323,6 +323,15 @@ For questions about:
 
 ---
 
+## 🔄 Recent Updates
+
+### Package Updates (November 2025)
+- ✅ **Updated** `com.unity.2d.tilemap.extras` from 4.2.3 to 6.0.1 for Unity 6 LTS compatibility
+- ✅ **Removed** deprecated `com.unity.ide.vscode` package (1.2.5 is not supported in Unity 6 LTS)
+- 📝 **Note:** For VS Code integration, use Microsoft's [Unity for Visual Studio Code](https://marketplace.visualstudio.com/items?itemName=visualstudiotoolsforunity.vstuc) extension instead
+
+---
+
 **Last Updated:** $(date +"%Y-%m-%d")
 **Project Status:** ✅ Core Systems Complete, Ready for Asset Creation
 **Next Milestone:** Sprite Creation & Tilemap Setup
