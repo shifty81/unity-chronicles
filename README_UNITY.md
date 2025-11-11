@@ -91,9 +91,10 @@ unity-chronicles/
    - Wait for Unity to import all assets (first time may take a few minutes)
    
    **⚠️ If you encounter compilation errors about TileTemplate:**
-   - Close Unity Editor
-   - Delete the `Library` folder in the project directory
-   - Reopen the project in Unity
+   - **Quick Fix:** Run the cleanup script:
+     - Windows: `.\cleanup-unity-cache.ps1`
+     - macOS/Linux: `./cleanup-unity-cache.sh`
+   - **Manual Fix:** Close Unity, delete the `Library` folder, reopen
    - See [TROUBLESHOOTING.md](TROUBLESHOOTING.md) for detailed solutions
 
 5. **Run the Game**

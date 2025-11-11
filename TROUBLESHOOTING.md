@@ -19,6 +19,18 @@ error CS0246: The type or namespace name 'TileTemplate' could not be found (are 
 Unity is using a cached version of the `com.unity.2d.tilemap.extras` package that is incompatible with Unity 6 LTS. Despite the manifest specifying version 6.0.1, Unity may still be referencing an older cached version in the `Library/PackageCache` folder.
 
 **Solution:**
+
+**Option 1: Use the cleanup scripts (Easiest)**
+```bash
+# On Windows (PowerShell)
+.\cleanup-unity-cache.ps1
+
+# On macOS/Linux/Git Bash
+./cleanup-unity-cache.sh
+```
+These interactive scripts will guide you through cleaning the package cache safely.
+
+**Option 2: Manual cleanup**
 1. **Close Unity Editor completely**
 2. **Delete the Library folder:**
    ```bash

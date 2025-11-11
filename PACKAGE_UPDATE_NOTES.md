@@ -45,9 +45,10 @@ Updated `Packages/manifest.json`:
 
 ### Next Steps for Developers
 1. **If you encounter TileTemplate compilation errors:**
-   - Close Unity Editor completely
-   - Delete the `Library` folder to clear the package cache
-   - Reopen the project in Unity 6 LTS
+   - **Quick Fix:** Run the cleanup script (recommended):
+     - Windows PowerShell: `.\cleanup-unity-cache.ps1`
+     - macOS/Linux/Git Bash: `./cleanup-unity-cache.sh`
+   - **Manual Fix:** Close Unity, delete `Library` folder, reopen
    - Unity will download the correct package version (6.0.1)
    - See [TROUBLESHOOTING.md](TROUBLESHOOTING.md) for detailed instructions
 
