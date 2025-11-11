@@ -29,11 +29,15 @@ namespace ChroniclesOfADrifter.Farming
         private void Awake()
         {
             if (Instance == null)
+            {
                 Instance = this;
+                DontDestroyOnLoad(gameObject);
+            }
             else
             {
                 Debug.LogWarning($"Multiple managers are loaded of type: {GetType().Name}. Destroying duplicate instance on GameObject: {gameObject.name}");
                 Destroy(gameObject);
+                return;
             }
         }
         

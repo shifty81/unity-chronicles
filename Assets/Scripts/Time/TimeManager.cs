@@ -38,14 +38,6 @@ namespace ChroniclesOfADrifter.Time
         public System.Action<Season> OnSeasonChanged;
         public System.Action<int> OnYearChanged;
         
-        public enum Season
-        {
-            Spring,
-            Summer,
-            Fall,
-            Winter
-        }
-        
         public enum TimeOfDayPeriod
         {
             Dawn,    // 6-8 AM
