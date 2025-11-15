@@ -12,7 +12,7 @@ namespace ChroniclesOfADrifter.Editor
     /// Editor utility to generate placeholder assets for the Chronicles of a Drifter project
     /// Creates folders, sprites, and ScriptableObject instances
     /// </summary>
-    public class PlaceholderAssetGenerator : MonoBehaviour
+    public static class PlaceholderAssetGenerator
     {
         private const string ASSETS_ROOT = "Assets";
         
@@ -300,46 +300,64 @@ namespace ChroniclesOfADrifter.Editor
             // Farmer NPC
             var farmer = ScriptableObject.CreateInstance<NPCData>();
             farmer.npcName = "Bob";
-            farmer.title = "Farmer";
             farmer.description = "A friendly local farmer who knows everything about crops.";
-            farmer.personality = "Friendly and helpful, loves talking about farming.";
+            farmer.biography = "Friendly and helpful, loves talking about farming. Bob has been farming in this region for over 20 years.";
             farmer.birthday = "Spring 15";
-            farmer.defaultDialogue = new string[] { 
-                "Hello there! Nice day for farming, isn't it?",
-                "Have you tried growing tomatoes? They're great in summer!",
-                "Make sure to water your crops every day!" 
+            farmer.dialogueSets = new System.Collections.Generic.List<NPCData.DialogueSet>
+            {
+                new NPCData.DialogueSet
+                {
+                    context = "default",
+                    dialogueLines = new string[] { 
+                        "Hello there! Nice day for farming, isn't it?",
+                        "Have you tried growing tomatoes? They're great in summer!",
+                        "Make sure to water your crops every day!" 
+                    }
+                }
             };
-            farmer.icon = LoadSprite("Sprites/Characters/npc_farmer.png");
+            farmer.portrait = LoadSprite("Sprites/Characters/npc_farmer.png");
             AssetDatabase.CreateAsset(farmer, "Assets/ScriptableObjects/NPCs/NPC_Bob_Farmer.asset");
             
             // Merchant NPC
             var merchant = ScriptableObject.CreateInstance<NPCData>();
             merchant.npcName = "Sarah";
-            merchant.title = "Merchant";
             merchant.description = "A traveling merchant who sells seeds and tools.";
-            merchant.personality = "Business-minded but fair, always ready to trade.";
+            merchant.biography = "Business-minded but fair, always ready to trade. Sarah travels between villages bringing goods from distant lands.";
             merchant.birthday = "Summer 22";
-            merchant.defaultDialogue = new string[] { 
-                "Welcome! Take a look at my wares!",
-                "I've got the finest seeds in the region!",
-                "Need any tools? I've got you covered!" 
+            merchant.dialogueSets = new System.Collections.Generic.List<NPCData.DialogueSet>
+            {
+                new NPCData.DialogueSet
+                {
+                    context = "default",
+                    dialogueLines = new string[] { 
+                        "Welcome! Take a look at my wares!",
+                        "I've got the finest seeds in the region!",
+                        "Need any tools? I've got you covered!" 
+                    }
+                }
             };
-            merchant.icon = LoadSprite("Sprites/Characters/npc_merchant.png");
+            merchant.portrait = LoadSprite("Sprites/Characters/npc_merchant.png");
             AssetDatabase.CreateAsset(merchant, "Assets/ScriptableObjects/NPCs/NPC_Sarah_Merchant.asset");
             
             // Blacksmith NPC
             var blacksmith = ScriptableObject.CreateInstance<NPCData>();
             blacksmith.npcName = "Marcus";
-            blacksmith.title = "Blacksmith";
             blacksmith.description = "The village blacksmith who can upgrade your tools.";
-            blacksmith.personality = "Gruff but kindhearted, takes pride in his work.";
+            blacksmith.biography = "Gruff but kindhearted, takes pride in his work. Marcus learned blacksmithing from his father and grandfather.";
             blacksmith.birthday = "Fall 3";
-            blacksmith.defaultDialogue = new string[] { 
-                "Need your tools upgraded? I can help with that.",
-                "Bring me ore and I'll make you something special.",
-                "My forge is always hot and ready!" 
+            blacksmith.dialogueSets = new System.Collections.Generic.List<NPCData.DialogueSet>
+            {
+                new NPCData.DialogueSet
+                {
+                    context = "default",
+                    dialogueLines = new string[] { 
+                        "Need your tools upgraded? I can help with that.",
+                        "Bring me ore and I'll make you something special.",
+                        "My forge is always hot and ready!" 
+                    }
+                }
             };
-            blacksmith.icon = LoadSprite("Sprites/Characters/npc_blacksmith.png");
+            blacksmith.portrait = LoadSprite("Sprites/Characters/npc_blacksmith.png");
             AssetDatabase.CreateAsset(blacksmith, "Assets/ScriptableObjects/NPCs/NPC_Marcus_Blacksmith.asset");
             
             Debug.Log("NPC ScriptableObjects created.");
