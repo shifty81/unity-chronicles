@@ -2,6 +2,22 @@
 
 A 2D top-down action RPG built with **Unity Engine**, inspired by The Legend of Zelda: A Link to the Past.
 
+---
+
+## 🚨 IMPORTANT: Cannot Enter Play Mode?
+
+If you see **compilation errors** about `TileTemplate` and Unity says:  
+**"All compiler errors must be fixed before you can enter play mode"**
+
+**➡️ [CLICK HERE FOR IMMEDIATE FIX](CRITICAL_FIX_CANNOT_PLAY.md) ⬅️**
+
+Quick fix:
+1. Close Unity Editor
+2. Run `cleanup-unity-cache.ps1` (Windows) or `cleanup-unity-cache.sh` (macOS/Linux)
+3. Reopen project in Unity Hub
+
+---
+
 ## 🎮 Platform Support
 
 **This Unity project supports multiple platforms:**

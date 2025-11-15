@@ -28,7 +28,11 @@ namespace ChroniclesOfADrifter.Crafting
             }
             else
             {
-                Debug.LogWarning($"Multiple managers are loaded of type: {GetType().Name}. Destroying duplicate instance on GameObject: {gameObject.name}");
+                // Silently destroy duplicate instances - this is expected behavior when scenes reload
+                // Only log in development builds to avoid console spam
+                #if UNITY_EDITOR
+                Debug.Log($"[CraftingManager] Duplicate instance found on '{gameObject.name}', destroying. This is normal if scene was reloaded.");
+                #endif
                 Destroy(gameObject);
                 return;
             }
